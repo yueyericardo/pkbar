@@ -5,6 +5,7 @@ import time
 import numpy as np
 import torch
 
+print('=> using pbar (progress bar)\n')
 pbar = pkbar.Pbar('loading and processing dataset', 10)
 
 for i in range(10):
@@ -15,7 +16,7 @@ for i in range(10):
 # Hyper-parameters
 input_size = 1
 output_size = 1
-num_epochs = 60
+num_epochs = 3
 learning_rate = 0.001
 train_per_epoch = 100
 
@@ -29,15 +30,17 @@ y_train = np.array([[1.7], [2.76], [2.09], [3.19], [1.694], [1.573],
                     [3.465], [1.65], [2.904], [1.3]], dtype=np.float32)
 
 # Linear regression model
-model = nn.Linear(input_size, output_size)
+model = torch.nn.Linear(input_size, output_size)
 
 # Loss and optimizer
-criterion = nn.MSELoss()
+criterion = torch.nn.MSELoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+print()
 
+print('=> using kbar (keras bar)\n')
 # Train the model
 for epoch in range(num_epochs):
-    print('Epoch: %d/%d' % (epoch+1, num_epochs))
+    print('Epoch: %d/%d' % (epoch + 1, num_epochs))
     # progress bar
     kbar = pkbar.Kbar(target=train_per_epoch, width=8)
 
@@ -56,14 +59,15 @@ for epoch in range(num_epochs):
         optimizer.zero_grad()
         train_loss.backward()
         optimizer.step()
+        time.sleep(0.1)
 
         kbar.update(i, values=[("loss", train_loss.detach().cpu().numpy()), ("rmse", train_rmse)])
 
     # validation
     outputs = model(inputs)
-    val_loss = criterion(outputs, targets).detach().cpu().numpy()
+    val_loss = criterion(outputs, targets)
     val_rmse = torch.sqrt(val_loss).detach().cpu().numpy()
 
     # validation log
     kbar.add(1, values=[("loss", train_loss.detach().cpu().numpy()), ("rmse", train_rmse),
-                        ("val_loss", val_loss), ("val_rmse", val_rmse)])
+                        ("val_loss", val_loss.detach().cpu().numpy()), ("val_rmse", val_rmse)])
