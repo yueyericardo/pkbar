@@ -42,7 +42,7 @@ loading and processing dataset
 10/10  [==============================] - 1.0s
 ```
 
-- `pkbar.kbar` (keras bar)
+- `pkbar.kbar` (keras bar) [for concreate example](https://github.com/yueyericardo/pkbar/blob/master/tests/test.py#L16)
 ```python
 import pkbar
 import torch
