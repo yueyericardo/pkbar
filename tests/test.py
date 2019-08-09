@@ -6,7 +6,7 @@ import numpy as np
 import torch
 
 print('=> using pbar (progress bar)\n')
-pbar = pkbar.Pbar('loading and processing dataset', 10)
+pbar = pkbar.Pbar(name='loading and processing dataset', target=10)
 
 for i in range(10):
     time.sleep(0.1)
