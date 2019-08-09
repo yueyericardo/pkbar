@@ -36,7 +36,6 @@ for i in range(10):
     time.sleep(0.1)
     pbar.update(i)
 ```
-output
 ```
 loading and processing dataset
 10/10  [==============================] - 1.0s
@@ -74,7 +73,6 @@ for epoch in range(num_epochs):
     kbar.add(1, values=[("loss", train_loss.detach().cpu().numpy()), ("rmse", train_rmse),
                         ("val_loss", val_loss.detach().cpu().numpy()), ("val_rmse", val_rmse)])
 ```
-output
 ```
 Epoch: 1/3
 100/100 [========] - 10s 102ms/step - loss: 3.7782 - rmse: 1.1650 - val_loss: 0.1823 - val_rmse: 0.4269
