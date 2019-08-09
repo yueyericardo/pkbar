@@ -2,13 +2,13 @@
 Keras style progressbar for pytorch (PK Bar)
 
 ### 1. show
-- `pkbar.pbar` (progress bar)
+- `pkbar.Pbar` (progress bar)
 ```
 loading and processing dataset
 10/10  [==============================] - 1.0s
 ```
 
-- `pkbar.kbar` (keras bar)
+- `pkbar.Kbar` (keras bar)
 ```
 Epoch: 1/3
 100/100 [========] - 10s 102ms/step - loss: 3.7782 - rmse: 1.1650 - val_loss: 0.1823 - val_rmse: 0.4269
@@ -25,7 +25,7 @@ pip install pkbar
 
 ### 3. Usage
 
-- `pkbar.pbar` (progress bar)
+- `pkbar.Pbar` (progress bar)
 ```python
 import pkbar
 import time
@@ -41,7 +41,7 @@ loading and processing dataset
 10/10  [==============================] - 1.0s
 ```
 
-- `pkbar.kbar` (keras bar) [for concreate example](https://github.com/yueyericardo/pkbar/blob/master/tests/test.py#L16)
+- `pkbar.Kbar` (keras bar) [for a concreate example](https://github.com/yueyericardo/pkbar/blob/master/tests/test.py#L16)
 ```python
 import pkbar
 import torch
