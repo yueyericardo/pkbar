@@ -1,4 +1,5 @@
 # pkbar
+[pkbar · PyPI](https://pypi.org/project/pkbar/)  
 Keras style progressbar for pytorch (PK Bar)
 
 ### 1. show
