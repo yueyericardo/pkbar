@@ -54,6 +54,10 @@ class Kbar(object):
         """
         values = values or []
         for k, v in values:
+            # if torch tensor, convert it to numpy
+            if str(type(v)) == "<class 'torch.Tensor'>":
+                v = v.detach().cpu().numpy()
+
             if k not in self._values_order:
                 self._values_order.append(k)
             if k not in self.stateful_metrics:
