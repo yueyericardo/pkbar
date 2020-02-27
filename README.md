@@ -58,20 +58,20 @@ for epoch in range(num_epochs):
     for i in range(train_per_epoch):
         outputs = model(inputs)
         train_loss = criterion(outputs, targets)
-        train_rmse = torch.sqrt(train_loss).detach().cpu().numpy()
+        train_rmse = torch.sqrt(train_loss)
         optimizer.zero_grad()
         train_loss.backward()
         optimizer.step()
 
-        kbar.update(i, values=[("loss", train_loss.detach().cpu().numpy()), ("rmse", train_rmse)])
+        kbar.update(i, values=[("loss", train_loss), ("rmse", train_rmse)])
 
     # validation
     outputs = model(inputs)
     val_loss = criterion(outputs, targets)
-    val_rmse = torch.sqrt(val_loss).detach().cpu().numpy()
+    val_rmse = torch.sqrt(val_loss)
 
-    kbar.add(1, values=[("loss", train_loss.detach().cpu().numpy()), ("rmse", train_rmse),
-                        ("val_loss", val_loss.detach().cpu().numpy()), ("val_rmse", val_rmse)])
+    kbar.add(1, values=[("loss", train_loss), ("rmse", train_rmse),
+                        ("val_loss", val_loss), ("val_rmse", val_rmse)])
 ```
 ```
 Epoch: 1/3
