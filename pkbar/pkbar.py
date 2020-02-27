@@ -1,7 +1,11 @@
 import time
 import sys
 import numpy as np
+from importlib import util as u
 
+TORCH_INSTALLED = u.find_spec('torch') is not None
+if TORCH_INSTALLED:
+    import torch
 
 class Kbar(object):
     """Keras progress bar.
@@ -54,6 +58,10 @@ class Kbar(object):
         """
         values = values or []
         for k, v in values:
+            # if torch tensor, convert it to numpy
+            if TORCH_INSTALLED and type(v) == torch.Tensor:
+                v = v.detach().cpu().numpy()
+
             if k not in self._values_order:
                 self._values_order.append(k)
             if k not in self.stateful_metrics:
