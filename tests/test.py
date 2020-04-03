@@ -5,7 +5,7 @@ import time
 import numpy as np
 import torch
 
-print('=> using pbar (progress bar)\n')
+print('=> using pbar (progress bar))
 pbar = pkbar.Pbar(name='loading and processing dataset', target=10)
 
 for i in range(10):
@@ -37,7 +37,7 @@ criterion = torch.nn.MSELoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 print()
 
-print('=> using kbar (keras bar)\n')
+print('=> using kbar (keras bar)')
 # Train the model
 for epoch in range(num_epochs):
     print('Epoch: %d/%d' % (epoch + 1, num_epochs))
