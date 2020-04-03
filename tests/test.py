@@ -5,7 +5,7 @@ import time
 import numpy as np
 import torch
 
-print('=> using pbar (progress bar))
+print('=> using pbar (progress bar)')
 pbar = pkbar.Pbar(name='loading and processing dataset', target=10)
 
 for i in range(10):
