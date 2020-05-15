@@ -1,5 +1,5 @@
 # pkbar
-![Test](https://github.com/yueyericardo/pkbar/workflows/Test/badge.svg) [![PyPI version](https://badge.fury.io/py/pkbar.svg)](https://badge.fury.io/py/pkbar)
+![Test](https://github.com/yueyericardo/pkbar/workflows/Test/badge.svg) [![PyPI version](https://badge.fury.io/py/pkbar.svg)](https://badge.fury.io/py/pkbar) [![pypidownload](https://img.shields.io/pypi/dm/pkbar.svg)](https://pypistats.org/packages/pkbar)
 
 Keras style progressbar for pytorch (PK Bar)
 
