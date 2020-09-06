@@ -69,7 +69,7 @@ for epoch in range(num_epochs):
         train_loss.backward()
         optimizer.step()
 
-        ################################ Update after batch ####################################
+        ############################# Update after each batch ##################################
         kbar.update(i, values=[("loss", train_loss), ("rmse", train_rmse)])
         ########################################################################################
 
