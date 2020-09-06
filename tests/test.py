@@ -66,7 +66,7 @@ for epoch in range(num_epochs):
         time.sleep(0.1)
 
         ############################# Update after each batch ##################################
-        kbar.update(i, values=[("loss", i), ("rmse", train_rmse)])
+        kbar.update(i, values=[("loss", i), ("rmse", train_rmse), ("epoch", epoch)])
         ########################################################################################
 
     # validation

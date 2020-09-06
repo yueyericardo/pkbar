@@ -11,6 +11,7 @@ class Kbar(object):
             num_epochs: Total epochs.
             width: Progress bar width on screen.
             verbose: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)
+            always_stateful: (Boolean) Whether to set all metrics to be stateful.
             stateful_metrics: Iterable of string names of metrics that
                     should *not* be averaged over time. Metrics in this list
                     will be displayed as-is. All others will be averaged
