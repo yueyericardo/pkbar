@@ -40,9 +40,13 @@ print()
 print('=> using kbar (keras bar)')
 # Train the model
 for epoch in range(num_epochs):
-    print('Epoch: %d/%d' % (epoch + 1, num_epochs))
-    # progress bar
-    kbar = pkbar.Kbar(target=train_per_epoch, width=8)
+    ################################### Initialization ########################################
+    kbar = pkbar.Kbar(target=train_per_epoch, epoch=epoch, num_epochs=num_epochs, width=8, always_stateful=False)
+    # By default, all metrics are averaged over time. If you don't want this behavior, you could either:
+    # 1. Set always_stateful to True, or
+    # 2. Set stateful_metrics=["loss", "rmse", "val_loss", "val_rmse"], Metrics in this list will be displayed as-is.
+    # All others will be averaged by the progbar before display.
+    ###########################################################################################
 
     # Convert numpy arrays to torch tensors
     inputs = torch.from_numpy(x_train)
@@ -61,12 +65,15 @@ for epoch in range(num_epochs):
         optimizer.step()
         time.sleep(0.1)
 
+        ############################# Update after each batch ##################################
         kbar.update(i, values=[("loss", train_loss), ("rmse", train_rmse)])
+        ########################################################################################
 
     # validation
     outputs = model(inputs)
     val_loss = criterion(outputs, targets)
     val_rmse = torch.sqrt(val_loss)
 
-    # validation log
-    kbar.add(1, values=[("loss", train_loss), ("rmse", train_rmse), ("val_loss", val_loss), ("val_rmse", val_rmse)])
+    ################################ Add validation metrics ###################################
+    kbar.add(1, values=[("val_loss", val_loss), ("val_rmse", val_rmse)])
+    ###########################################################################################
