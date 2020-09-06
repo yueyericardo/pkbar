@@ -3,7 +3,7 @@
 
 Keras style progressbar for pytorch (PK Bar)
 
-### 1. show
+### 1. Show
 - `pkbar.Pbar` (progress bar)
 ```
 loading and processing dataset
