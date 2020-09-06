@@ -41,7 +41,7 @@ print('=> using kbar (keras bar)')
 # Train the model
 for epoch in range(num_epochs):
     ################################### Initialization ########################################
-    kbar = pkbar.Kbar(target=train_per_epoch, epoch=epoch, num_epochs=num_epochs, width=8, always_stateful=True)
+    kbar = pkbar.Kbar(target=train_per_epoch, epoch=epoch, num_epochs=num_epochs, width=8, always_stateful=False)
     # By default, all metrics are averaged over time. If you don't want this behavior, you could either:
     # 1. Set always_stateful to True
     # 2. Set stateful_metrics=["loss", "rmse", "val_loss", "val_rmse"], Metrics in this list will be displayed as-is.
