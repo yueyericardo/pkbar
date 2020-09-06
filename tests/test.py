@@ -40,9 +40,12 @@ print()
 print('=> using kbar (keras bar)')
 # Train the model
 for epoch in range(num_epochs):
-    print('Epoch: %d/%d' % (epoch + 1, num_epochs))
-    # progress bar
-    kbar = pkbar.Kbar(target=train_per_epoch, width=8)
+    ################################### Initialization ########################################
+    kbar = pkbar.Kbar(target=train_per_epoch, epoch=epoch, num_epochs=num_epochs, width=8, always_stateful=True)
+    # By default, all metrics are averaged over time. If you don't want this behavior, you could either:
+    # 1. Set always_stateful to True
+    # 2. Set stateful_metrics=["loss", "rmse", "val_loss", "val_rmse"], Metrics in this list will be displayed as-is.
+    ###########################################################################################
 
     # Convert numpy arrays to torch tensors
     inputs = torch.from_numpy(x_train)

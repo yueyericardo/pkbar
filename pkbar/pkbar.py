@@ -7,6 +7,8 @@ class Kbar(object):
     """Keras progress bar.
     Arguments:
             target: Total number of steps expected, None if unknown.
+            epoch: Zeor-indexed current epoch.
+            num_epochs: Total epochs.
             width: Progress bar width on screen.
             verbose: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)
             stateful_metrics: Iterable of string names of metrics that
@@ -17,13 +19,18 @@ class Kbar(object):
             unit_name: Display name for step counts (usually "step" or "sample").
     """
 
-    def __init__(self, target, width=30, verbose=1, interval=0.05,
-                 stateful_metrics=None, unit_name='step'):
+    def __init__(self, target, epoch=None, num_epochs=None,
+                 width=30, verbose=1, interval=0.05,
+                 stateful_metrics=None, always_stateful=False,
+                 unit_name='step'):
         self.target = target
         self.width = width
         self.verbose = verbose
         self.interval = interval
         self.unit_name = unit_name
+        self.always_stateful= always_stateful
+        if (epoch is not None) and (num_epochs is not None):
+            print('Epoch: %d/%d' % (epoch + 1, num_epochs))
         if stateful_metrics:
             self.stateful_metrics = set(stateful_metrics)
         else:
@@ -60,7 +67,7 @@ class Kbar(object):
 
             if k not in self._values_order:
                 self._values_order.append(k)
-            if k not in self.stateful_metrics:
+            if k not in self.stateful_metrics and not self.always_stateful:
                 if k not in self._values:
                     self._values[k] = [v * (current - self._seen_so_far),
                                        current - self._seen_so_far]
